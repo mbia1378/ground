@@ -1,0 +1,175 @@
+<!--
+  ~ Copyright 2018 Google LLC
+  ~
+  ~ Licensed under the Apache License, Version 2.0 (the "License");
+  ~ you may not use this file except in compliance with the License.
+  ~ You may obtain a copy of the License at
+  ~
+  ~     https://www.apache.org/licenses/LICENSE-2.0
+  ~
+  ~ Unless required by applicable law or agreed to in writing, software
+  ~ distributed under the License is distributed on an "AS IS" BASIS,
+  ~ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  ~ See the License for the specific language governing permissions and
+  ~ limitations under the License.
+  -->
+
+<resources>
+
+  <style name="AppTheme" parent="AppTheme.Base">
+  </style>
+
+  <style name="MenuTheme" parent="TextAppearance.AppCompat.Widget.ActionBar.Menu">
+
+  </style>
+
+  <style name="AppTheme.Base" parent="Theme.AppCompat.Light.NoActionBar">
+    <item name="colorPrimary">@color/colorPrimary</item>
+    <item name="colorAccent">@color/colorAccent</item>
+  </style>
+
+  <style name="GreenToolbarTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+    <item name="gndToolbarTitleStyle">@style/GreenToolbarTitle</item>
+    <item name="gndToolbarSubtitleStyle">@style/GreenToolbarSubtitle</item>
+  </style>
+
+  <style name="GreenToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+    <item name="android:textColor">@color/colorBackground</item>
+  </style>
+
+  <style name="GreenToolbarSubtitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+    <item name="android:textColor">@color/colorGrey300</item>
+    <item name="android:textSize">12sp</item>
+    <item name="colorControlNormal">@color/colorBackground</item>
+  </style>
+
+  <style name="WhiteToolbarTheme" parent="ThemeOverlay.AppCompat.ActionBar">
+    <item name="android:background">@color/colorBackground</item>
+    <item name="gndToolbarTitleStyle">@style/WhiteToolbarTitle</item>
+    <item name="gndToolbarSubtitleStyle">@style/WhiteToolbarSubtitle</item>
+    <item name="colorControlNormal">@color/colorAccent</item>
+  </style>
+
+  <style name="WhiteToolbarTitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Title">
+    <item name="android:textColor">@color/colorForeground</item>
+  </style>
+
+  <style name="WhiteToolbarSubtitle" parent="TextAppearance.Widget.AppCompat.Toolbar.Subtitle">
+    <item name="android:textColor">@color/colorGrey600</item>
+    <item name="android:textSize">12sp</item>
+  </style>
+
+  <style name="FormSelectorTabStyle" parent="Widget.Design.TabLayout">
+    <item name="tabIndicatorColor">?attr/colorAccent</item>
+    <item name="tabIndicatorHeight">2dp</item>
+    <item name="tabPaddingStart">12dp</item>
+    <item name="tabPaddingEnd">12dp</item>
+    <item name="tabMode">fixed</item>
+    <!--<item name="tabBackground">?colorPrimaryDark</item>-->
+    <item name="tabTextAppearance">@style/FormSelectorTabTextStyle</item>
+    <item name="tabSelectedTextColor">?android:textColorPrimaryInverse</item>
+  </style>
+
+  <style name="FormSelectorTabTextStyle" parent="TextAppearance.Design.Tab">
+    <item name="android:textSize">10sp</item>
+    <item name="android:textColor">?attr/colorAccent</item>
+    <item name="textAllCaps">true</item>
+  </style>
+
+  <style name="InputError" parent="AppTheme.Base">
+    <item name="android:paddingLeft">@dimen/field_horizontal_padding</item>
+    <item name="android:paddingRight">@dimen/field_horizontal_padding</item>
+    <item name="android:textColor">@color/colorAlert</item>
+    <item name="android:textSize">@dimen/input_error</item>
+  </style>
+
+  <style name="TextInputHintLight" parent="TextAppearance.AppCompat">
+    <item name="android:textSize">@dimen/field_label_text_size</item>
+  </style>
+
+  <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
+
+  <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
+
+  <style name="RecordListText">
+    <item name="android:textSize">@dimen/record_list_text_size</item>
+  </style>
+
+  <style name="RecordListText.CreatorName">
+    <item name="android:textColor">?android:textColorPrimary</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="RecordListText.Separator">
+    <item name="android:textColor">?android:textColorPrimary</item>
+  </style>
+
+  <style name="RecordListText.Timestamp">
+    <item name="android:textColor">?android:textColorPrimary</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+
+  <style name="RecordListText.FieldLabel">
+    <item name="android:textColor">@color/colorGrey600</item>
+    <item name="android:textSize">@dimen/record_list_field_label_size</item>
+  </style>
+
+  <!--
+    NOTE: Most attributes do not work when style is set programmatically, so individual layout
+    attributes are set in RecordListAdapter instead.
+    -->
+  <style name="RecordListText.Field">
+    <item name="android:textColor">@color/colorGrey800</item>
+  </style>
+
+  <style name="RecordDetails.Field.Label" parent="AppTheme.Base">
+    <item name="android:paddingLeft">@dimen/field_horizontal_padding</item>
+    <item name="android:paddingRight">@dimen/field_horizontal_padding</item>
+    <item name="android:textColor">@color/colorGrey600</item>
+    <item name="android:textSize">@dimen/field_label_text_size</item>
+  </style>
+
+  <style name="RecordDetails.Field.Value" parent="AppTheme.Base">
+    <item name="android:textColor">@color/colorForeground</item>
+    <item name="android:textSize">@dimen/field_value_text_size</item>
+  </style>
+
+  <style name="EditRecord.Field.Text" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <!-- TODO -->
+  </style>
+
+  <style name="EditRecord.Field.MultipleChoice" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+    <!-- TODO -->
+  </style>
+
+  <style name="ImageButton" parent="Widget.AppCompat.ImageButton">
+    <item name="android:tint">@color/colorAccent</item>
+    <item name="android:background">?android:attr/selectableItemBackgroundBorderless</item>
+  </style>
+
+  <style name="ChipButton" parent="Widget.MaterialComponents.Chip.Action">
+    <item name="chipBackgroundColor">@color/colorAccent</item>
+    <item name="chipCornerRadius">@dimen/chip_button_corner_radius</item>
+    <item name="chipStartPadding">@dimen/chip_button_padding</item>
+    <item name="chipEndPadding">@dimen/chip_button_padding</item>
+    <item name="android:paddingTop">@dimen/chip_button_padding</item>
+    <item name="android:paddingBottom">@dimen/chip_button_padding</item>
+    <!-- textColor inside textAppearance stopped working in 28.0.0-rc02. -->
+    <item name="android:textColor">@color/colorBackground</item>
+    <item name="android:textAppearance">@style/ChipButtonText</item>
+  </style>
+
+
+  <style name="ChipButton.Toolbar">
+    <item name="chipCornerRadius">@dimen/chip_toolbar_button_corner_radius</item>
+    <item name="chipStartPadding">@dimen/chip_toolbar_button_padding</item>
+    <item name="chipEndPadding">@dimen/chip_toolbar_button_padding</item>
+    <item name="android:paddingTop">@dimen/chip_toolbar_button_padding</item>
+    <item name="android:paddingBottom">@dimen/chip_toolbar_button_padding</item>
+  </style>
+
+  <style name="ChipButtonText">
+    <item name="android:textSize">@dimen/chip_button_text_size</item>
+    <item name="android:textStyle">bold</item>
+  </style>
+</resources>

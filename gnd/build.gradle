@@ -1,0 +1,163 @@
+/*
+ * Copyright 2018 Google LLC
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *     https://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+apply plugin: 'com.android.application'
+
+project.ext {
+    autoDisposeVersion = "1.2.0"
+    autoValueVersion = "1.6"
+    butterKnifeVersion = "10.1.0"
+    constraintLayoutVersion = "1.0.2"
+    daggerVersion = "2.21"
+    // Latest: https://firebase.google.com/support/release-notes/android#latest_sdk_versions
+    firebaseCoreVersion = "16.0.3"
+    firebaseFirestoreVersion = "17.1.0"
+    gmsVersion = "15.0.1"
+    guavaVersion = "23.0-android"
+    junitVersion = "4.12"
+    lifecycleVersion = "2.0.0-beta01"
+    navigationVersion = "1.0.0-alpha05"
+    rxAndroidVersion = "2.1.1"
+    rxBindingVersion = "2.1.1"
+    rxFirebaseVersion = "1.5.0"
+    rxJava2DebugVersion = "1.4.0"
+    rxJavaVersion = "2.2.8"
+    streamSupportVersion = "1.6.3"
+    supportLibraryVersion = "1.0.0-beta01"
+    tabLayoutHelper = "0.9.0"
+}
+
+def homePath = System.properties['user.home']
+
+android {
+    compileSdkVersion 28
+    defaultConfig {
+        // https://developer.android.com/about/dashboards/index.html for reference.
+        applicationId "com.google.android.gnd"
+        minSdkVersion 15
+        // Switching targetSdkVersion to 27 or 28 causes the app to hang on map drags; diagnose and
+        // fix before increasing this value.
+        targetSdkVersion 26
+        versionCode gitVersioner.versionCode
+        versionName gitVersioner.versionName
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        multiDexEnabled true
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+        debug {
+        }
+    }
+    // Keep the following configuration in order to target Java 8.
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    lintOptions {
+        // For com_google_android_gms_fonts_certs_(dev|prod), which causes lint errors.
+        disable 'MissingTranslation'
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    androidTestImplementation('androidx.test.espresso:espresso-core:3.1.0-alpha4', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    implementation 'androidx.multidex:multidex:2.0.0'
+
+    // Android legacy support Libraries.
+    implementation "androidx.legacy:legacy-support-v4:$project.supportLibraryVersion"
+    implementation "androidx.appcompat:appcompat:$project.supportLibraryVersion"
+
+    // UI widgets.
+    implementation "androidx.cardview:cardview:$project.supportLibraryVersion"
+    implementation "com.google.android.material:material:$project.supportLibraryVersion"
+    implementation "com.android.support.constraint:constraint-layout:" +
+            "$project.constraintLayoutVersion"
+
+    // Support for Java streams.
+    implementation "net.sourceforge.streamsupport:streamsupport-cfuture:" +
+            "$project.streamSupportVersion"
+
+    // For dynamic tab bar style.
+    implementation "com.google.android.gms:play-services-auth:$project.gmsVersion"
+    implementation "com.google.android.gms:play-services-maps:$project.gmsVersion"
+    implementation "com.google.android.gms:play-services-location:$project.gmsVersion"
+
+    // Firebase and related libraries.
+    implementation "com.google.firebase:firebase-core:$project.firebaseCoreVersion"
+    implementation "com.google.firebase:firebase-firestore:$project.firebaseFirestoreVersion"
+    implementation "com.google.firebase:firebase-auth:$project.firebaseCoreVersion"
+    implementation "com.github.FrangSierra:RxFirebase:$project.rxFirebaseVersion"
+
+    // Dagger core
+    annotationProcessor "com.google.dagger:dagger-compiler:$project.daggerVersion"
+    implementation "com.google.dagger:dagger:$project.daggerVersion"
+
+    // Dagger Android
+    implementation "com.google.dagger:dagger-android:$project.daggerVersion"
+    annotationProcessor "com.google.dagger:dagger-android-processor:$project.daggerVersion"
+    implementation "com.google.dagger:dagger-android-support:$project.daggerVersion"
+
+    // ButterKnife
+    implementation "com.jakewharton:butterknife:$project.butterKnifeVersion"
+    annotationProcessor "com.jakewharton:butterknife-compiler:$project.butterKnifeVersion"
+
+    // ReactiveX
+    implementation "io.reactivex.rxjava2:rxjava:$project.rxJavaVersion"
+    implementation "io.reactivex.rxjava2:rxandroid:$project.rxAndroidVersion"
+    implementation "com.akaita.java:rxjava2-debug:$project.rxJava2DebugVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding:$project.rxBindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-support-v4:$project.rxBindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-appcompat-v7:$project.rxBindingVersion"
+    implementation "com.jakewharton.rxbinding2:rxbinding-design:$project.rxBindingVersion"
+
+    // Android Arch Lifecycle
+    implementation "androidx.lifecycle:lifecycle-runtime:$project.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$project.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-reactivestreams:$project.lifecycleVersion"
+    annotationProcessor "androidx.lifecycle:lifecycle-compiler:$project.lifecycleVersion"
+
+    // Android Navigation
+    implementation "android.arch.navigation:navigation-fragment:$project.navigationVersion"
+    implementation "android.arch.navigation:navigation-ui:$project.navigationVersion"
+
+    // Auto-value
+    compileOnly "com.google.auto.value:auto-value-annotations:$project.autoValueVersion"
+    annotationProcessor "com.google.auto.value:auto-value:$project.autoValueVersion"
+
+    // Guava
+    implementation "com.google.guava:guava:$project.guavaVersion"
+
+    // Testing
+    testImplementation "junit:junit:$project.junitVersion"
+
+    implementation "com.uber.autodispose:autodispose-android:$project.autoDisposeVersion"
+    implementation "com.uber.autodispose:autodispose-android-archcomponents:$project.autoDisposeVersion"
+}
+apply plugin: 'androidx.navigation.safeargs'
+
+// This must be last to avoid dependency collisions.
+// https://developers.google.com/android/guides/google-services-plugin#introduction
+apply plugin: 'com.google.gms.google-services'
